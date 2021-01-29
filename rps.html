@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+
+		<title>Odin Project: Javascript Practice</title>
+		<meta charset="utf-8">
+		<style>
+
+			h1{
+				color: green;
+				text-align: center;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+		<h1>Herro preash!</h1>
+
+		<script>
+			/*
+			function add7(a) { 
+				return (a + 7);
+			}
+
+			function multiply(a, b) {
+				return a*b;
+			}
+
+			function capitalize(a) {
+				let lowerCaseString = a.toLowerCase();
+				let capitalLetter = lowerCaseString.charAt(0).toUpperCase();
+				let newString = capitalLetter + lowerCaseString.slice(1);
+				return newString;
+			}
+
+			function lastLetter(a) {
+				return a.charAt(a.length-1);
+			}
+
+			console.log('Herro preash!');
+			*/
+
+			//---------------------------------------- Fizz Buzz ------------------------------------
+			/*
+			let input = parseInt(prompt('Pick a number'));
+
+			for (let i = 1; i <= input; i++) {
+
+				if (i % 3 === 0 && i % 5 === 0) {
+					console.log('Fizz Buzz ' + i);
+				}
+
+				else if (i % 3 === 0) {
+					console.log('Fizz ' + i);
+				}
+
+				else if (i % 5 === 0) {
+					console.log('Buzz ' + i);
+				}
+				else {
+					console.log(i);
+				}
+
+			}*/
+			let p = 0
+			let c = 0
+			let t = 0
+			const options = ['rock', 'paper', 'scissor']
+
+			function playRound(player, computer) {
+				if (player === 'rock' && computer === 'rock') {
+					console.log('TIE');
+					return ++t;
+					
+				}
+				if (player === 'rock' && computer === 'paper') {
+					console.log('LOST');
+					return ++c;
+				}
+				if (player === 'rock' && computer === 'scissor') {
+					console.log('WIN');
+					return ++p;
+				}
+				if (player === 'paper' && computer === 'rock') {
+					console.log('WIN');
+					return ++p;
+				}
+				if (player === 'paper' && computer === 'paper') {
+					console.log('TIE');
+					return ++t;
+				}
+				if (player === 'paper' && computer === 'scissor') {
+					console.log('LOST');
+					return ++c;
+				}
+				if (player === 'scissor' && computer === 'rock') {
+					console.log('LOST');
+					return ++c;
+				}
+				if (player === 'scissor' && computer === 'paper') {
+					console.log('WIN');
+					return ++p;
+				}
+				if (player === 'scissor' && computer === 'scissor') {
+					console.log('TIE');
+					return ++t;
+				}
+
+			}
+
+			function game(player) {
+				const random = options[Math.floor(Math.random() * options.length)];
+				const choice = player.toLowerCase();
+				playRound(choice, random);
+				console.log(`Player score: ${p}, Computer sccore: ${c}, Ties: ${t}`);
+				if (p === 3) {
+					console.log('YOU WIN')
+				}
+				else if (c === 3) {
+					console.log('YOU LOSE')
+				}
+				else game(prompt('Rock, paper, scissor'));
+
+			}
+			game(prompt('Rock, paper, scissor'));
+
+
+
+		</script>
+
+	</body>
+
+
+</html>
