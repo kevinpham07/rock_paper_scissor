@@ -1,20 +1,37 @@
 			let p = 0
 			let c = 0
 			let t = 0
-			const options = ['rock', 'paper', 'scissor']
+
+			const con = document.querySelector('#console');
+
+			const resultsT = () => {
+				const para = document.createElement('p');
+				para.textContent = 'TIE';
+				con.appendChild(para);
+			}
+			const resultsL = () => {
+				const para = document.createElement('p');
+				para.textContent = 'LOST';
+				con.appendChild(para);
+			}
+			const resultsW = () => {
+				const para = document.createElement('p');
+				para.textContent = 'WIN';
+				con.appendChild(para);
+			}
 
 			function playRound(player, computer) {
 				if (player === 'rock' && computer === 'rock') {
-					console.log('TIE');
+					resultsT()
 					return ++t;
 					
 				}
 				if (player === 'rock' && computer === 'paper') {
-					console.log('LOST');
+					resultsL()
 					return ++c;
 				}
 				if (player === 'rock' && computer === 'scissor') {
-					console.log('WIN');
+					resultsW();
 					return ++p;
 				}
 				if (player === 'paper' && computer === 'rock') {
@@ -44,18 +61,51 @@
 
 			}
 
+			const para = document.getElementById('scoreBoard');
+			const options = ['rock', 'paper', 'scissor']
+			
+			const reset = () => {
+				p = 0;
+				c = 0;
+				t = 0;
+			}
+			const win = () => {
+				let text = document.createElement('p');
+				text.textContent = 'YOU WIN';
+				con.appendChild(text);
+			}
+			const lose = () => {
+				let text = document.createElement('p');
+				text.textContent = 'YOU LOSE';
+				con.appendChild(text);
+			}
+
 			function game(player) {
 				const random = options[Math.floor(Math.random() * options.length)];
-				const choice = player.toLowerCase();
-				playRound(choice, random);
-				console.log(`Player score: ${p}, Computer sccore: ${c}, Ties: ${t}`);
+
+				playRound(player, random);
+
+				para.textContent = `Player score: ${p}, Computer score: ${c}, Ties: ${t}`;
+
 				if (p === 3) {
-					console.log('YOU WIN')
+					win();
+					reset();
 				}
-				else if (c === 3) {
-					console.log('YOU LOSE')
+				if (c === 3) {
+					lose();
+					reset();
 				}
-				else game(prompt('Rock, paper, scissor'));
+
+				return
 
 			}
-			game(prompt('Rock, paper, scissor'));
+
+			const buttons = document.querySelectorAll('button');
+			
+			buttons.forEach(button => {
+
+				button.addEventListener('click', () => {game(button.id)});
+
+			})
+
+			
